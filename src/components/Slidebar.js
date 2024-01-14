@@ -111,7 +111,9 @@ const Slidebar = () => {
             <div>
               <FontAwesomeIcon icon={faBarsStaggered} />
             </div>
-            <div className="ml-5 text-gray-700">Live</div>
+            <Link to="/Live">
+              <div className="ml-5 text-gray-700">Live</div>
+            </Link>
           </li>
           <li className="flex py-2 border-0 rounded-xl cursor-pointer hover:bg-gray-100 last:mb-2 ">
             <div>

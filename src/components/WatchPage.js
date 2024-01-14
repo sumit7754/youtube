@@ -37,18 +37,6 @@ const WatchPage = () => {
     dispatch(addItem(video));
   };
 
-  const iframe = document.querySelector('iframe');
-
-  function displayEvent(event) {
-    //message.textContent = event.type
-  }
-
-  iframe.contentWindow.addEventListener('load', () => {
-    handleClick(video);
-  });
-
-  //const player = iframe.contentWindow.document.querySelector('video');
-
   return (
     <>
       <div className="flex flex-col mx-28 w-full">
