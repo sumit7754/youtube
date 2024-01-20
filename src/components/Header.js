@@ -4,12 +4,15 @@ import { toogleMenu } from '../utils/appSlice';
 import { YOUTUBE_SEARCH_API } from '../utils/contant';
 import { cacheResults } from '../utils/searchSlice';
 import { Link } from 'react-router-dom';
+import store from '../utils/store';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
   const dispatch = useDispatch();
+
+  const color = useSelector((store) => store.color.toggle);
 
   const searchCatch = useSelector((store) => store.search);
 
@@ -39,15 +42,19 @@ const Header = () => {
     );
   };
 
-  const handlScroll = () => {
+  const handleScroll = () => {
     dispatch(toogleMenu());
   };
 
+  const list = useSelector((store) => store.History.List);
+
+  console.log(list);
+
   return (
-    <div className="grid grid-flow-col p-2 m-2 ">
+    <div className={`grid grid-flow-col p-2 m-2 ${color ? 'dark' : 'light'}`}>
       <div className="flex items-center col-span-1 cursor-pointer">
         <img
-          onClick={handlScroll}
+          onClick={handleScroll}
           className="h-8"
           src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-4.png"
           alt="Menu Icon"

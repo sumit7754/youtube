@@ -10,6 +10,7 @@ import WatchPage from './components/WatchPage';
 import SearchVideos from './components/SearchVideos';
 import Meeting from './components/Meeting';
 import Welcome from './components/Welcome';
+import HistoryVideos from './components/HistoryVideos';
 
 const AppRouter = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const AppRouter = createBrowserRouter([
       {
         path: '/Live',
         element: <Welcome />,
+      },
+      {
+        path: '/history',
+        element: <HistoryVideos />,
       },
     ],
   },

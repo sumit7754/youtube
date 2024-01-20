@@ -1,5 +1,5 @@
 import { useMeeting, Constants, useParticipant } from '@videosdk.live/react-sdk';
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import ParticipantView from './ParticipantView';
 import Controls from './Controls';
@@ -7,11 +7,11 @@ import Controls from './Controls';
 const SpeakerView = () => {
   const [joined, setJoined] = useState(null);
   const { participants } = useMeeting();
-  // meeting
+
   const mMeeting = useMeeting({
     onMeetingJoined: () => {
       setJoined('JOINED');
-      if (mMeetingRef.current.localParticipant.mode == 'CONFERENCE') {
+      if (mMeetingRef.current.localParticipant.mode === Constants.modes.CONFERENCE) {
         mMeetingRef.current.localParticipant.pin();
       }
     },
@@ -31,15 +31,31 @@ const SpeakerView = () => {
       {joined && joined === 'JOINED' ? (
         <div>
           <div>
-            {Speaker.map((participant) => (
-              // { creeating a card }
-              <ParticipantView participantId={participant.id} key={participant.id} />
-            ))}
+            {Speaker.length > 0 ? (
+              // Render ParticipantView cards
+              <ParticipantView participantId={Speaker[0].id} key={Speaker[0].id} />
+            ) : (
+              // Shimmer loading state
+              <div className="animate-pulse flex space-x-4">
+                <div className="bg-gray-300 h-24 w-24 rounded-full"></div>
+                <div className="flex-1 space-y-4 py-1">
+                  <div className="h-4 bg-gray-300 rounded"></div>
+                  <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                </div>
+              </div>
+            )}
           </div>
           <Controls />
         </div>
       ) : (
-        <p>Loading...</p>
+        // Shimmer loading state while joining the meeting
+        <div className="animate-pulse flex space-x-4">
+          <div className="bg-gray-300 h-24 w-24 rounded-full"></div>
+          <div className="flex-1 space-y-4 py-1">
+            <div className="h-4 bg-gray-300 rounded"></div>
+            <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+          </div>
+        </div>
       )}
     </div>
   );

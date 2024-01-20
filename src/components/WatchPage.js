@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { closeMenu } from '../utils/appSlice';
-import { Link, useSearchParams } from 'react-router-dom';
-import { YOUTUBE_VIDEOS_API } from '../utils/contant';
+import { useSearchParams } from 'react-router-dom';
+import YouTube from 'react-youtube';
 import CommentContainer from './CommentContainer';
 import LiveChat from './LiveChat';
-import { addItem, print } from '../utils/historySlice';
+import { addHistory } from '../utils/historySlice';
+import { YOUTUBE_VIDEOS_API } from '../utils/contant';
 
 const WatchPage = () => {
   const [searchParam] = useSearchParams();
   const dispatch = useDispatch();
-
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     getVideos();
-  }, []);
+    dispatch(closeMenu());
+  }, [dispatch]);
 
   const getVideos = async () => {
     try {
@@ -27,40 +28,38 @@ const WatchPage = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(closeMenu());
-  }, []);
+  const videoId = searchParam.get('v');
+  const video = videos.find((item) => item.id === videoId);
 
-  const video = videos.find((item) => item.id === searchParam.get('v'));
-
-  const handleClick = (video) => {
-    dispatch(addItem(video));
+  const handleClick = (v) => {
+    dispatch(addHistory(v));
+    console.log('load');
   };
 
   return (
-    <>
-      <div className="flex flex-col mx-28 w-full">
-        <div className="flex flex-row w-full">
-          <div>
-            <iframe
-              onClick={() => handleClick(video)}
-              className="rounded-lg"
-              width="900"
-              height="500"
-              src={'https://www.youtube.com/embed/' + searchParam.get('v')}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
-            <h1 className="font-bold text-xl my-2">{video?.snippet?.title}</h1>
-          </div>
-
-          <LiveChat />
+    <div className="flex flex-col mx-28 w-full">
+      <div className="flex flex-row w-full">
+        <div>
+          <YouTube
+            videoId={videoId}
+            opts={{
+              width: '900',
+              height: '500',
+              playerVars: {
+                autoplay: 0,
+              },
+            }}
+            onPlay={() => {
+              handleClick(video);
+            }}
+          />
+          <h1 className="font-bold text-xl my-2">{video?.snippet?.title}</h1>
         </div>
-        <CommentContainer />
+
+        <LiveChat />
       </div>
-    </>
+      <CommentContainer />
+    </div>
   );
 };
 

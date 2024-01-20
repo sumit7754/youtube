@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useMeeting } from '@videosdk.live/react-sdk';
+import LiveChat from './LiveChat'; // Import LiveChat component
 import Hls from 'hls.js'; // Make sure to import the Hls library
 
 function ViewerView() {
@@ -35,27 +36,37 @@ function ViewerView() {
   }, [hlsUrls.downstreamUrl, hlsState]);
 
   return (
-    <div>
+    <div className="bg-gray-900 text-white p-8">
+      <div className="text-3xl md:text-5xl text-yellow-500 text-center mb-8 leading-relaxed md:leading-snug">
+        Enjoy the Live Stream
+      </div>
+
       {/* Showing message if HLS is not started or is stopped by HOST */}
       {hlsState !== 'HLS_PLAYABLE' ? (
-        <div>
+        <div className="text-center">
           <p>Please Click Go Live Button to start HLS</p>
         </div>
       ) : (
         hlsState === 'HLS_PLAYABLE' && (
-          <div>
-            <video
-              ref={playerRef}
-              id="hlsPlayer"
-              autoPlay
-              controls
-              style={{ width: '50%', height: '50%' }}
-              playsInline
-              muted
-              onError={(err) => {
-                console.log(err, 'hls video error');
-              }}
-            ></video>
+          <div className="flex justify-center">
+            <div className="w-3/4">
+              <video
+                ref={playerRef}
+                id="hlsPlayer"
+                autoPlay
+                controls
+                className="w-full h-full"
+                playsInline
+                muted
+                onError={(err) => {
+                  console.log(err, 'hls video error');
+                }}
+              ></video>
+            </div>
+            {/* Live Chat on the right side */}
+            <div className="w-1/4">
+              <LiveChat />
+            </div>
           </div>
         )
       )}

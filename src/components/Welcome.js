@@ -8,9 +8,22 @@ const Welcome = () => {
 
   if (!mode) {
     return (
-      <div>
-        <button onClick={() => setMode(Constants.modes.CONFERENCE)}>Speaker</button>
-        <button onClick={() => setMode(Constants.modes.VIEWER)}>VIEWER</button>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-3xl font-bold mb-4">Welcome to YouTube Live</h1>
+        <div className="space-y-4">
+          <button
+            onClick={() => setMode(Constants.modes.CONFERENCE)}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Start as Speaker
+          </button>
+          <button
+            onClick={() => setMode(Constants.modes.VIEWER)}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Join as Viewer
+          </button>
+        </div>
       </div>
     );
   }
@@ -18,14 +31,14 @@ const Welcome = () => {
   return (
     <MeetingProvider
       config={{
-        meetingId: 'sb82-41sl-04v4',
+        meetingId: '242r-qvn5-sudk',
         micEnabled: true,
         webcamEnabled: true,
-        name: "Sumit's Org",
+        name: "sjjodhpur15's Org",
         mode,
       }}
       joinWithoutUserInteraction
-      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiI1Mjc0ZjY1Yi0yOWI4LTQ3NWUtODZlZS02YWIzMWY3YzgyYjQiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcwNTIxMjc2OCwiZXhwIjoxNzA1Mjk5MTY4fQ.7mRzO_SZwRcH5rI7rNykVQ5_M1vZYhfrxUxNwOou8wM"
+      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIzMDM3ZWY5Yi1kNzQ3LTQyN2EtYjJjYy1lYzUwOWJmNjc2MGUiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcwNTMzMDgzOSwiZXhwIjoxNzA1NDE3MjM5fQ.voFBY8Q_Q5DpAlpnNpOh2zM90ZXX_qJHNLAZpPfh8EA"
     >
       {mode === Constants.modes.CONFERENCE ? <SpeakerView /> : <ViewerView />}
     </MeetingProvider>

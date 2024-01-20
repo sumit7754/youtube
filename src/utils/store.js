@@ -3,13 +3,15 @@ import appSlice from './appSlice';
 import searchSlice from './searchSlice';
 import chatSlice from './chatSlice';
 import historySlice from './historySlice';
+import darkSlice from './darkSlice';
 
 const store = configureStore({
   reducer: {
     app: appSlice,
     search: searchSlice,
     chat: chatSlice,
-    history: historySlice,
+    History: historySlice,
+    color: darkSlice,
   },
 });
 

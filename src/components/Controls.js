@@ -1,7 +1,7 @@
 import { useMeeting } from '@videosdk.live/react-sdk';
 
 const Controls = () => {
-  const { hlsState, startHls, stopHls } = useMeeting();
+  const { hlsState, startHls, stopHls, meeting } = useMeeting();
   const _handleHLS = () => {
     console.log('hlsState', hlsState);
     if (!hlsState || hlsState === 'HLS_STOPPED') {
@@ -52,6 +52,24 @@ const Controls = () => {
           Go Live
         </button>
       )}
+      <button
+        onClick={() => {
+          meeting?.enableScreenShare();
+
+          // Disabling ScreenShare
+          meeting?.disableScreenShare();
+        }}
+      >
+        Share Screen
+      </button>
+      <button
+        onClick={() => {
+          meeting?.enableWebcam();
+          meeting?.disableWebcam();
+        }}
+      >
+        Webcam
+      </button>
     </>
   );
 };

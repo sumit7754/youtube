@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import store from '../utils/store';
 import {
   faBarsStaggered,
   faClapperboard,
@@ -60,7 +61,9 @@ const Slidebar = () => {
             <div>
               <FontAwesomeIcon icon={faClockRotateLeft} />
             </div>
-            <div className="ml-5 text-gray-700">History</div>
+            <Link to="/history">
+              <div className="ml-5 text-gray-700">History</div>
+            </Link>
           </li>
           <li className="flex py-2 border-0 rounded-xl cursor-pointer hover:bg-gray-100 last:mb-2 ">
             <div>
