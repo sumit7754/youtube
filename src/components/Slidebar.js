@@ -21,7 +21,7 @@ const Slidebar = () => {
   if (!isMenuOpen) return null;
 
   return (
-    <div className="py-4  w-56 h-full  overflow-y-scroll fixed top-[3.8rem] bg-white">
+    <div className="py-4  w-56 h-full  overflow-y-scroll fixed top-[3.8rem] bg-white ">
       <ul>
         <Link to="/">
           <li className="flex py-2 border-0 rounded-xl cursor-pointer hover:bg-gray-100 last:mb-2 ">

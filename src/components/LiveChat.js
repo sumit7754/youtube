@@ -18,7 +18,7 @@ const LiveChat = () => {
           message: generateRandomMessage(),
         }),
       );
-    }, 10000);
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, [dispatch]);
