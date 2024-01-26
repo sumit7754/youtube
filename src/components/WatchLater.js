@@ -1,12 +1,16 @@
-import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import SearchVideoCard from './SearchVideoCard';
+import { Link } from 'react-router-dom';
 
 const WatchLater = () => {
-  const [searchParam] = useSearchParams();
-
+  const List = useSelector((store) => store.watchLater.list);
   return (
     <div>
-      <h1> WatchLater</h1>
+      {List.map((item) => (
+        <Link key={item.id} to={'/watch?v=' + item.id}>
+          <SearchVideoCard info={item} />
+        </Link>
+      ))}
     </div>
   );
 };

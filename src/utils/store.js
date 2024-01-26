@@ -4,6 +4,7 @@ import searchSlice from './searchSlice';
 import chatSlice from './chatSlice';
 import historySlice from './historySlice';
 import darkSlice from './darkSlice';
+import wacthLaterSlice from './wacthLaterSlice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     chat: chatSlice,
     History: historySlice,
     color: darkSlice,
+    watchLater: wacthLaterSlice,
   },
 });
 

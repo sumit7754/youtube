@@ -81,7 +81,9 @@ const Slidebar = () => {
             <div>
               <FontAwesomeIcon icon={faClock} />
             </div>
-            <div className="ml-5 text-gray-700">Watch Later</div>
+            <Link to="/watchLater">
+              <div className="ml-5 text-gray-700">Watch Later</div>
+            </Link>
           </li>
         </ul>
       </div>

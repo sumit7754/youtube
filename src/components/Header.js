@@ -4,7 +4,6 @@ import { toogleMenu } from '../utils/appSlice';
 import { YOUTUBE_SEARCH_API } from '../utils/contant';
 import { cacheResults } from '../utils/searchSlice';
 import { Link } from 'react-router-dom';
-import store from '../utils/store';
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,7 +32,7 @@ const Header = () => {
   const getSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
-    console.log(json);
+
     setSuggestions(json[1]);
     dispatch(
       cacheResults({

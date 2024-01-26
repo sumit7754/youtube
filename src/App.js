@@ -47,6 +47,10 @@ const AppRouter = createBrowserRouter([
         path: '/history',
         element: <HistoryVideos />,
       },
+      {
+        path: '/watchLater',
+        element: <WatchLater />,
+      },
     ],
   },
 ]);
