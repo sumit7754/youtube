@@ -1,10 +1,10 @@
-# BeyondView
+# Youtube Clone
 
-Welcome to BeyondView – a feature-rich video-sharing platform with an extra layer of awesomeness! 🚀
+Welcome to youtube clone – a feature-rich video-sharing platform with an extra layer of awesomeness! 🚀
 
 ## Overview
 
-BeyondView is a YouTube clone with enhanced features for a more interactive and enjoyable video-sharing experience.
+YouTube clone with enhanced features for a more interactive and enjoyable video-sharing experience.
 
 ## Features
 
@@ -20,8 +20,8 @@ Follow these steps to get started with BeyondView:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/BeyondView.git
-   cd BeyondView
+   git clone https://github.com/your-username/youtube.git
+   cd youtube
    ```
 
 2. **Install dependencies:**
@@ -33,7 +33,7 @@ Follow these steps to get started with BeyondView:
 3. **Run the application:**
 
    ```bash
-   npm start
+   npm run start
    ```
 
 4. **Open your browser and go to:**
